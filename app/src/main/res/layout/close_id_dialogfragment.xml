@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/sv_tran"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_30sdp"
+                android:background="@color/black">
+
+
+                <TextView
+                    android:id="@+id/txt_website_name"
+                    style="@style/text_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/gtwalsheimpro_bold"
+                    android:gravity="center"
+                    android:text="@string/app_name"
+                    android:textSize="@dimen/txt_size_vsm"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="@+id/img_app_logo"
+                    app:layout_constraintStart_toStartOf="@+id/img_app_logo"
+                    app:layout_constraintTop_toBottomOf="@+id/img_app_logo" />
+
+                <TextView
+                    android:id="@+id/txt_website_name_link"
+                    style="@style/text_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+
+                    android:fontFamily="@font/gtwalsheimpro_bold"
+                    android:gravity="center"
+                    android:text="@string/app_name"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="@+id/img_app_logo"
+                    app:layout_constraintStart_toStartOf="@+id/img_app_logo"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_website_name" />
+
+                <TextView
+                    android:id="@+id/txt_user_id_name"
+                    style="@style/text_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+
+                    android:fontFamily="@font/gtwalsheimpro_bold"
+                    android:gravity="center"
+                    android:text="@string/app_name"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="@+id/img_app_logo"
+                    app:layout_constraintStart_toStartOf="@+id/img_app_logo"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_website_name_link" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_app_logo"
+                    style="@style/circle_image_view"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:src="@mipmap/ic_launcher"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_close_id"
+                    style="@style/text_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/gtwalsheimpro_bold"
+                    android:gravity="center"
+                    android:text="Confirm Before Close ID"
+                    android:textSize="@dimen/txt_size_vsm"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_user_id_name" />
+
+                <CheckBox
+                    android:id="@+id/cb_less_withdraw_amt"
+                    style="@style/checkBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:gravity="end|center_vertical"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:text="Your total balance in ID should be less than the daily withdrawal liimit."
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_close_id" />
+
+                <CheckBox
+                    android:id="@+id/cb_no_active_bet"
+                    style="@style/checkBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:gravity="end|center_vertical"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:text="No active bets"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cb_less_withdraw_amt" />
+
+
+                <TextView
+                    android:id="@+id/txt_withdraw_coins"
+                    style="@style/text_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:fontFamily="@font/gtwalsheimpro_bold"
+                    android:gravity="center"
+                    android:text="Withdraw Your Coins To"
+                    android:textSize="@dimen/txt_size_vsm"
+                    android:visibility="visible"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cb_no_active_bet" />
+
+                <RadioGroup
+                    android:id="@+id/rd_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_withdraw_coins">
+
+                    <RadioButton
+                        android:id="@+id/rd_btn_wallet"
+                        style="@style/radioBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:gravity="end|center_vertical"
+                        android:checked="true"
+                        android:text="Spider Wallet"
+                        android:visibility="gone"/>
+                    <RadioButton
+                        android:id="@+id/rd_btn_bank"
+                        style="@style/radioBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:gravity="end|center_vertical"
+                        android:checked="true"
+                        android:text="Bank Paytm"/>
+
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/txt_reason"
+                    style="@style/text_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:fontFamily="@font/gtwalsheimpro_bold"
+                    android:gravity="center"
+                    android:text="Reason For Close ID"
+                    android:textSize="@dimen/txt_size_vsm"
+                    android:visibility="visible"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rd_group" />
+
+
+                <RadioGroup
+                    android:id="@+id/rd_group1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_reason">
+
+                    <RadioButton
+                        android:id="@+id/rd_btn_app_issue"
+                        style="@style/radioBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:gravity="end|center_vertical"
+                        android:text="Spider related issue"/>
+                    <RadioButton
+                        android:id="@+id/rd_btn_website_issue"
+                        style="@style/radioBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:gravity="end|center_vertical"
+                        android:text="Website releted issue"/>
+                    <RadioButton
+                        android:id="@+id/rd_btn_othe_issue"
+                        style="@style/radioBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:gravity="end|center_vertical"
+                        android:text="Other issue"/>
+
+
+                </RadioGroup>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_reason"
+                    style="@style/TextAppearence.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="@dimen/_10sdp"
+
+                    android:textAlignment="gravity"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rd_group1">
+
+                    <EditText
+                        android:id="@+id/edt_reason"
+                        style="@style/EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:hint="Reason"
+                        android:inputType="textMultiLine"
+                        android:minLines="5"
+                        android:gravity="top|start"
+
+                        android:textColorHint="@color/red"
+
+                        />
+                    <!--            android:text="@={loginViewModle.userEmail}"-->
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <Button
+                    android:id="@+id/btn_close_id"
+                    style="@style/Button"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:text="Rise A Concern"
+                    android:textSize="@dimen/txt_size_vvsm"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_reason" />
+
+                <!--      <TextView
+                          android:id="@+id/txt_tran_image"
+                          style="@style/text_header"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="@dimen/_20sdp"
+                          android:layout_marginTop="@dimen/_20sdp"
+                          android:fontFamily="@font/gtwalsheimpro_bold"
+                          android:gravity="center"
+                          android:text="Transaction Image"
+                          android:textSize="@dimen/txt_size_vsm"
+                          android:visibility="visible"
+                          app:layout_constraintStart_toStartOf="parent"
+                          app:layout_constraintTop_toBottomOf="@+id/btn_concern" />
+      -->
+
+
+
+
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/red"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

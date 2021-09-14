@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item >
+        <shape android:shape="oval">
+            <solid android:color="@color/red"/>
+            <size android:width="30dp" android:height="30dp"/>
+        </shape>
+
+    </item>
+
+
+<item android:drawable="@drawable/withdraw_word"
+    android:top="10dp"
+    android:bottom="10dp"
+    android:end="10dp"
+    android:start="10dp"
+    android:right="10dp"
+    android:left="10dp"
+android:gravity="center"
+    >
+
+</item>
+
+    <!--<item android:drawable="@drawable/withdraw"
+        android:height="20dp"
+        android:width="20dp"
+        android:gravity="center"
+        />-->
+</layer-list>

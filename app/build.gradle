@@ -1,0 +1,92 @@
+plugins {
+    id 'com.android.application'
+}
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    dataBinding {
+        enabled = true
+    }
+
+    defaultConfig {
+        applicationId "com.example.spider"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+repositories {
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    maven { url 'https://oss.jfrog.org/artifactory/oss-snapshot-local' }
+}
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+//    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
+    implementation 'com.google.android.material:material:1.5.0-alpha01'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+
+    //dimentions
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    //circle image
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
+
+    //bottom nav
+    implementation 'com.etebarian:meow-bottom-navigation-java:1.2.0'
+
+    //country code
+    implementation 'com.github.joielechong:countrycodepicker:2.4.2'
+
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:28.2.0')
+
+    // Declare the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-core:19.0.0'
+
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //banner slider
+    implementation 'com.ss.bannerslider:bannerslider:2.0.0'
+
+    implementation 'com.jsibbold:zoomage:1.3.1-SNAPSHOT'
+    implementation 'com.jsibbold:zoomage:1.3.1'
+
+
+
+
+
+}

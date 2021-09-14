@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<style name="App_Theame" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <item name="fontFamily">@font/gtwalsheimpro_regular</item>
+    <item name="alertDialogStyle">@style/My_Alert_Dialog</item>
+    <item name="popupMenuStyle">@style/MyPopupMenu</item>
+
+</style>
+
+
+
+    <style name="SearchView" >
+
+        <item name="android:editTextColor">@color/white</item>
+        <item name="hintTextColor">@color/white</item>
+        <item name="android:background">@drawable/bg_rv_item_without_bordre</item>
+        <item name="android:backgroundTint">@color/app_theme_color</item>
+
+    </style>
+
+    <style name="MyPopupMenu" parent="@style/Widget.AppCompat.PopupMenu">
+
+        <item name="android:dropDownHorizontalOffset">@dimen/_4sdp</item>
+        <item name="android:dropDownVerticalOffset">@dimen/_4sdp</item>
+
+    </style>
+
+    <style name="My_Alert_Dialog" parent="Theme.AppCompat.Dialog.Alert">
+
+      
+        <item name="android:fontFamily">@font/gtwalsheimpro_regular</item>
+        <item name="android:titleTextAppearance">@style/MyTextAppearance1</item>
+
+        <item name="android:textColor">@color/app_theme_color</item>
+
+    </style>
+
+    <style name="MyTextAppearance1" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/gtwalsheimpro_regular</item>
+        <item name="titleTextStyle">@font/gtwalsheimpro_regular</item>
+    </style>
+
+    <style name="spinner" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:background">@drawable/bg_rv_item_without_bordre</item>
+        <item name="android:layout_height">@dimen/_40sdp</item>
+        <item name="android:entries">@array/drop_down_array</item>
+    </style>
+
+    <style name="EditText">
+        <item name="android:background">@drawable/bg_edit_text</item>
+        <item name="android:textSize">@dimen/txt_size_vvsm</item>
+        <item name="fontFamily">@font/gtwalsheimpro_regular</item>
+        <item name="android:padding">@dimen/_15sdp</item>
+        <item name="android:drawablePadding">@dimen/_5sdp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/app_theme_color</item>
+        <item name="minHeight">@dimen/_40sdp</item>
+
+    </style>
+    <style name="EditText_without_bg_border">
+        <item name="android:background">@drawable/bg_edit_text1</item>
+        <item name="android:textSize">@dimen/txt_size_vvsm</item>
+        <item name="fontFamily">@font/gtwalsheimpro_regular</item>
+        <item name="android:padding">@dimen/_10sdp</item>
+        <item name="android:drawablePadding">@dimen/_5sdp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/app_theme_color</item>
+        <item name="minHeight">@dimen/_40sdp</item>
+
+    </style>
+    <style name="EditText_without_bg">
+
+        <item name="android:textSize">@dimen/txt_size_vvsm</item>
+        <item name="fontFamily">@font/gtwalsheimpro_regular</item>
+        <item name="android:padding">@dimen/_10sdp</item>
+        <item name="android:drawablePadding">@dimen/_5sdp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/app_theme_color</item>
+        <item name="minHeight">@dimen/_40sdp</item>
+        <item name="backgroundTint">@color/d_black</item>
+
+    </style>
+
+    <style name="Button" >
+        <item name="android:layout_height">@dimen/_30sdp</item>
+        <item name="android:background">@drawable/bg_btn</item>
+        <item name="android:textSize">@dimen/txt_size_vvsm</item>
+        <item name="fontFamily">@font/gtwalsheimpro_regular</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">@dimen/_5sdp</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="bottomStyle" parent="Widget.Design.BottomNavigationView">
+        <item name="android:textSize">@dimen/txt_size_vvsm</item>
+        <item name="android:letterSpacing">0.0</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="text_header" >
+        <item name="android:textSize">@dimen/txt_size_vvsm</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/gtwalsheimpro_regular</item>
+    </style>
+    <style name="text_normal" >
+        <item name="android:textSize">@dimen/txt_size_vvvsm</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/gtwalsheimpro_light</item>
+    </style>
+    <style name="nav_text" >
+        <item name="android:textSize">@dimen/txt_size_vvsm</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/gtwalsheimpro_light</item>
+    </style>
+    <style name="text_light" >
+        <item name="android:textSize">@dimen/txt_size_vvvsm</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/gtwalsheimpro_light</item>
+    </style>
+
+    <style name="TextAppearence.App.TextInputLayout" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/app_theme_color</item>
+        <item name="android:textColorHint">@color/app_theme_color</item>
+        <item name="hintTextColor">@color/app_theme_color</item>
+
+    </style>
+
+    <style name="radioBtn">
+        <item name="android:buttonTint">@color/app_theme_color</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/txt_size_vvvsm</item>
+        <item name="fontFamily">@font/gtwalsheimpro_regular</item>
+    </style>
+
+    <style name="checkBox">
+        <item name="buttonTint">@color/app_theme_color</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/txt_size_vvvsm</item>
+        <item name="fontFamily">@font/gtwalsheimpro_regular</item>
+
+    </style>
+    <style name="circle_image_view" >
+
+        <item name="civ_border_width">1dp</item>
+        <item name="civ_border_color">@color/yellow</item>
+        <item name="civ_border_overlay">true</item>
+
+    </style>
+    <style name="progressbar">
+
+        <item name="android:indeterminateTint">@color/app_theme_color</item>
+    </style>
+
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/my_id_om_deposit"
+        android:title="@string/deposit"
+
+        />
+    <item
+        android:id="@+id/my_id_om_withdraw"
+        android:title="@string/withdraw"
+        />
+    <item
+        android:id="@+id/my_id_detail"
+        android:title="@string/id_detail"
+       />
+    <item
+        android:id="@+id/my_id_om_change_pass"
+        android:title="@string/change_password_sm"
+       />
+    <item
+        android:id="@+id/my_id_om_close_id"
+        android:title="@string/close_id"
+        />
+</menu>

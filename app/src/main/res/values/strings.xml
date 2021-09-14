@@ -1,0 +1,132 @@
+<resources>
+    <string name="app_name">Spider</string>
+    <string name="email">Email</string>
+    <string name="phone_no">Phone No.</string>
+    <string name="otp">OTP</string>
+
+    <string name="phone_no_">Phone No.<sup>*</sup></string>
+    <string name="password">Password</string>
+    <string name="password_">Password<sup>*</sup></string>
+<!--    <string name="cnf_password">Confirm Password</string>-->
+    <string name="cnf_password_">Confirm Password<sup>*</sup></string>
+    <string name="referal_code">Referal Code</string>
+    <string name="forgot_password">Forgot Password ? </string>
+    <string name="sign_up">Sign Up</string>
+    <string name="log_in">Sign In</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="open_drawer">Open navigation drawer</string>
+    <string name="close_drawer">Close navigation drawer</string>
+    <string name="submit">Submit</string>
+    <string name="lets_get_started">Let\'s Get Started</string>
+    <string name="name">Name</string>
+    <string name="name_">Name<sup>*</sup></string>
+    <string name="accept_line_of_term_condtinon">I\'ve read and accept the</string>
+    <string name="term_condtinon"> <u>Term &amp; Condition</u></string>
+    <string name="term_condtinon_">Term &amp; Condition</string>
+    <string name="sign_in_with_otp"><![CDATA[<font>Sign In With</font><font color=#37aef2> OTP</font>]]></string>
+    <string name="wallet_balance">Wallet Balance</string>
+    <string name="deposit_coin_">Deposit coins <sup>*</sup></string>
+    <string name="deposit_coin">Deposit coins </string>
+    <string name="withdraw_coin_">Withdraw coins <sup>*</sup></string>
+    <string name="withdraw_coin">Withdraw coins</string>
+    <string name="deposit">Deposit</string>
+    <string name="withdraw">Withdraw</string>
+    <string name="withdrawal">Withdrawal</string>
+    <string name="payment_detail">Payment Detail</string>
+    <string name="create_id">Create Id</string>
+    <string name="my_id">My Ids</string>
+    <string name="tran_history">Transaction History</string>
+    <string name="id_detail">ID Detail</string>
+    <string name="refer_earn">Refer &amp; Earn</string>
+    <string name="notifiction">Notification</string>
+    <string name="help">Help</string>
+    <string name="term_condition">Term Condition</string>
+    <string name="home">Home</string>
+    <string name="offer">Offer</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="min_withdraw_amt">* Minimum withdraw amount is </string>
+    <string name="min_deposit_amt">* Minimum deposit amount is  </string>
+    <string name="withdraw_limit">Withdraw Limit : </string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="enter_otp_title">We have sent OTP on </string>
+    <string name="change_password">CHANGE PASSWORD </string>
+    <string name="change_password_sm">Change Password </string>
+    <string name="close_id">Close Id </string>
+    <string name="cricket">Cricket</string>
+    <string name="football">Football</string>
+    <string name="tenis">Tennis</string>
+    <string name="horse_racing">Horse Racing</string>
+    <string name="live_casino">Live Casino</string>
+    <string name="cards">Cards</string>
+    <string name="politics">Politics</string>
+    <string name="min_refill">Min Refill</string>
+    <string name="min_withdraw">Min Withdraw</string>
+    <string name="min_maintainbal">Min Maintain Bal</string>
+    <string name="min_maxWithdraw">Max Withdraw</string>
+    <string name="user_name">User Name<sup>*</sup></string>
+    <string name="create">Create</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="payment">Payment</string>
+    <string name="accNO_">Account Number<sup>*</sup></string>
+    <string name="accNO">Account Number</string>
+    <string name="accHolderName_">Account Holder Name<sup>*</sup></string>
+    <string name="accHolderName">Account Holder Name</string>
+    <string name="ifsc_">IFSC<sup>*</sup></string>
+    <string name="ifsc">IFSC</string>
+<string name="bankName_">Bank Name<sup>*</sup></string>
+    <string name="bankName">Bank Name</string>
+    <string name="bankAdd_">Bank Address<sup>*</sup></string>
+    <string name="bankAdd">Bank Address</string>
+    <string name="sav_acc">Saving Account</string>
+    <string name="cur_acc">Current Account</string>
+    <string name="add">Add</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="upiNo_"> Upi Number<sup>*</sup></string>
+    <string name="channel_id">Channel Id</string>
+    <string name="tran_detail">Transaction Details</string>
+    <string name="requested_coins">Requested Coins</string>
+    <string name="reference_no">Reference No</string>
+    <string name="request_date">Request Date</string>
+    <string name="rejected_on">Rejected On</string>
+    <string name="approved_coins">Approved Coins</string>
+    <string name="approved_on">Approved On</string>
+    <string name="canceled_on">Canceled On</string>
+    <string name="coins">Coins</string>
+    <string name="payment_mode">Payment Mode</string>
+    <string name="remark">Remark</string>
+    <string name="raise_a_concern">Concern</string>
+    <string name="cancelation">Cancellation</string>
+
+
+    //Notification
+    <string name="noti_withdraw">withdraw</string>
+    <string name="noti_deposite">deposite</string>
+    <string name="noti_clientId">clientid</string>
+    <string name="rewards_earned">Rewards Earned</string>
+    <string name="user_referred">User Referred</string>
+    <string name="banner">banner</string>
+
+    <string-array name="drop_down_array">
+
+        <item>Select type of concern</item>
+        <item>Deposit</item>
+        <item>Withdraw</item>
+        <item>Create ID</item>
+        <item>Close ID</item>
+        <item>Change ID Password</item>
+    </string-array>
+
+    <string-array name="drop_down_filter_array">
+
+        <item>Select type of filter</item>
+        <item>Deposit to Id</item>
+        <item>Deposit to wallet</item>
+        <item>Withdraw from Id</item>
+        <item>Withdraw from wallet</item>
+        <item>Create ID</item>
+        <item>Close ID</item>
+        <item>Change ID Password</item>
+        <item>Reward</item>
+    </string-array>
+</resources>

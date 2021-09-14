@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="trans_item"
+            type="com.example.spider.model.Transactionhistory" />
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/sv_tran"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_30sdp"
+                android:background="@color/black">
+
+
+                <TextView
+                    android:id="@+id/txt_website_name"
+                    style="@style/text_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/gtwalsheimpro_bold"
+                    android:gravity="center"
+
+                    android:textSize="@dimen/txt_size_vsm"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="@+id/img_app_logo"
+                    app:layout_constraintStart_toStartOf="@+id/img_app_logo"
+                    app:layout_constraintTop_toBottomOf="@+id/img_app_logo" />
+
+                <TextView
+                    android:id="@+id/txt_website_name_link"
+                    style="@style/text_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+
+                    android:fontFamily="@font/gtwalsheimpro_bold"
+                    android:gravity="center"
+
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="@+id/img_app_logo"
+                    app:layout_constraintStart_toStartOf="@+id/img_app_logo"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_website_name" />
+
+                <TextView
+                    android:id="@+id/txt_user_id_name"
+                    style="@style/text_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+
+                    android:fontFamily="@font/gtwalsheimpro_bold"
+                    android:gravity="center"
+
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="@+id/img_app_logo"
+                    app:layout_constraintStart_toStartOf="@+id/img_app_logo"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_website_name_link" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_app_logo"
+                    style="@style/circle_image_view"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:src="@mipmap/ic_launcher"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_tran_title"
+                    style="@style/text_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/gtwalsheimpro_bold"
+
+
+                    android:textSize="@dimen/txt_size_vsm"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toStartOf="@+id/txt_status"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_user_id_name" />
+
+                <TextView
+                    android:id="@+id/txt_status"
+                    style="@style/text_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:fontFamily="@font/gtwalsheimpro_bold"
+                    android:gravity="center"
+                    android:text="Approved"
+                    android:padding="@dimen/_3sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:textSize="@dimen/txt_size_vvvsm"
+                    android:visibility="visible"
+                    android:background="@drawable/bg_rv_demo_id"
+                    android:backgroundTint="@color/green"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_tran_title"
+                    app:layout_constraintEnd_toEndOf="@+id/cl_tran_detail"
+
+                    app:layout_constraintTop_toTopOf="@+id/txt_tran_title" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_tran_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:background="@drawable/bg_rv_demo_id"
+                    android:padding="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_tran_title">
+
+                    <TextView
+                        android:id="@+id/txt_tran_detail"
+                        style="@style/text_header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tran_detail"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--<ImageView
+                android:id="@+id/img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_money_chips"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_minBet_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_minBet_header" />-->
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@color/black"
+                        app:layout_constraintTop_toBottomOf="@id/txt_tran_detail" />
+
+                    <TextView
+                        android:id="@+id/txt_approved_coins_header"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:text="@string/approved_coins"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view2" />
+
+                    <TextView
+                        android:id="@+id/txt_approved_coins"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:text="100"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_approved_coins_header"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txt_approved_coins_header" />
+
+                    <TextView
+                        android:id="@+id/txt_coins_header"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+
+                        android:drawablePadding="@dimen/_5sdp"
+
+                        android:text="@string/coins"
+
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txt_approved_coins_header" />
+
+                    <TextView
+                        android:id="@+id/txt_coins"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:text="100"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_coins_header"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txt_coins_header" />
+
+                    <TextView
+                        android:id="@+id/txt_payment_mode_header"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+
+                        android:drawablePadding="@dimen/_5sdp"
+
+                        android:text="@string/payment_mode"
+
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txt_coins_header" />
+
+                    <TextView
+                        android:id="@+id/txt_payment_mode"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:text="100"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_payment_mode_header"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txt_payment_mode_header" />
+
+                    <TextView
+                        android:id="@+id/txt_requested_coins_header"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:text="@string/requested_coins"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txt_payment_mode_header" />
+
+                    <TextView
+                        android:id="@+id/txt_requested_coins"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:text="100"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_requested_coins_header"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txt_requested_coins_header" />
+
+                    <TextView
+                        android:id="@+id/txt_reference_no_header"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+
+                        android:text="@string/reference_no"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txt_requested_coins_header" />
+
+                    <TextView
+                        android:id="@+id/txt_reference_no"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="100"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_reference_no_header"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txt_reference_no_header" />
+
+                    <TextView
+                        android:id="@+id/txt_request_date_header"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+
+                        android:text="@string/request_date"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txt_reference_no_header" />
+
+                    <TextView
+                        android:id="@+id/txt_request_date"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="100"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_request_date_header"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txt_request_date_header" />
+
+                    <TextView
+                        android:id="@+id/txt_rejected_on_header"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+
+                        android:text="@string/rejected_on"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txt_request_date_header" />
+
+                    <TextView
+                        android:id="@+id/txt_rejected_on"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="100"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_rejected_on_header"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txt_rejected_on_header" />
+
+                    <TextView
+                        android:id="@+id/txt_approved_on_header"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+
+                        android:text="@string/approved_on"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txt_rejected_on_header" />
+
+                    <TextView
+                        android:id="@+id/txt_approved_on"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="100"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_approved_on_header"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txt_approved_on_header" />
+
+                    <TextView
+                        android:id="@+id/txt_canceled_on_header"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+
+                        android:text="@string/canceled_on"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txt_approved_on_header" />
+
+                    <TextView
+                        android:id="@+id/txt_canceled_on"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="100"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_canceled_on_header"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txt_canceled_on_header" />
+
+                    <!-- <TextView
+                android:id="@+id/txt_cards_header"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:drawableStart="@drawable/cards"
+                android:drawablePadding="@dimen/_5sdp"
+                android:drawableTint="@color/red"
+                android:text="@string/cards"
+                
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_approved_on_header" />
+
+            <TextView
+                android:id="@+id/txt_cards_minBet"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="100"
+                
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_cards_header" />
+
+            <TextView
+                android:id="@+id/txt_politics_header"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:drawableStart="@drawable/politics"
+                android:drawablePadding="@dimen/_5sdp"
+                android:drawableTint="@color/red"
+                android:text="@string/politics"
+                
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_cards_header" />
+
+            <TextView
+                android:id="@+id/txt_politics_minBet"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="100"
+                
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_politics_header" />-->
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_remark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/bg_rv_demo_id"
+                    android:padding="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_tran_detail">
+
+                    <TextView
+                        android:id="@+id/txt_remark_title"
+                        style="@style/text_header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/remark"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--<ImageView
+                android:id="@+id/img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_money_chips"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_minBet_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_minBet_header" />-->
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@color/black"
+                        app:layout_constraintTop_toBottomOf="@id/txt_remark_title" />
+
+                    <TextView
+                        android:id="@+id/txt_remark_msg"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:text="@string/remark"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view3" />
+
+                    <TextView
+                        android:id="@+id/txt_user_id_header"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+
+                        android:text="@string/user_name"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txt_remark_msg" />
+
+                    <TextView
+                        android:id="@+id/txt_user_id"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Demo"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_user_id_header"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txt_user_id_header" />
+
+                    <TextView
+                        android:id="@+id/txt_user_pass_header"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+
+                        android:text="@string/password"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txt_user_id_header" />
+
+                    <TextView
+                        android:id="@+id/txt_user_pass"
+                        style="@style/text_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="1123456"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_user_pass_header"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txt_user_pass_header" />
+
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <Button
+                    android:id="@+id/btn_concern"
+                    style="@style/Button"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="Rise A Concern"
+                    android:textSize="@dimen/txt_size_vvsm"
+                    app:layout_constraintEnd_toEndOf="@+id/cl_remark"
+                    app:layout_constraintStart_toStartOf="@+id/cl_remark"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_remark" />
+
+                <Button
+                    android:id="@+id/btn_cancelWithdraw"
+                    style="@style/Button"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="Cancel Withdraw"
+                    android:visibility="gone"
+                    android:textSize="@dimen/txt_size_vvsm"
+                    app:layout_constraintEnd_toEndOf="@+id/cl_remark"
+                    app:layout_constraintStart_toStartOf="@+id/cl_remark"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_concern" />
+
+                <TextView
+                    android:id="@+id/txt_tran_image"
+                    style="@style/text_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/gtwalsheimpro_bold"
+                    android:gravity="center"
+                    android:text="Transaction Image"
+                    android:textSize="@dimen/txt_size_vsm"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_cancelWithdraw" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_take_screenshot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:background="@drawable/dash_border_bg"
+
+                    android:minHeight="@dimen/_180sdp"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_tran_image">
+
+
+                    <com.jsibbold.zoomage.ZoomageView
+                        android:id="@+id/img_screenshot"
+                        android:layout_width="@dimen/_180sdp"
+                        android:layout_height="@dimen/_230sdp"
+                        android:src="@drawable/ic_baseline_person_24"
+                        android:visibility="visible"
+
+                        app:zoomage_restrictBounds="true"
+                        app:zoomage_animateOnReset="true"
+                        app:zoomage_autoResetMode="UNDER"
+                        app:zoomage_autoCenter="false"
+                        app:zoomage_minScale="0.6"
+                        app:zoomage_maxScale="8"
+                        app:zoomage_translatable="true"
+                        app:zoomage_zoomable="true"
+                        app:zoomage_doubleTapToZoom="true"
+                        app:zoomage_doubleTapToZoomScaleFactor="3"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/red"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

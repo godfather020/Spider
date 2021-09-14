@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:background="@color/black">
+
+       <!-- <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/bg_rv_demo_id"
+            android:padding="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/money_chips"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_wallet_header"
+                    style="@style/text_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:text="@string/wallet_balance"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/txt_size_sm"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+                <TextView
+                    android:id="@+id/txt_wallet_amt"
+                    style="@style/text_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/txt_size_md"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                    app:layout_constraintStart_toStartOf="@+id/txt_wallet_header"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_wallet_header" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
+        <TextView
+            android:id="@+id/txt_website_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_header"
+            android:text="@string/app_name"
+            android:textSize="@dimen/txt_size_vsm"
+            android:gravity="center"
+            android:fontFamily="@font/gtwalsheimpro_bold"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@+id/img_app_logo"
+            app:layout_constraintStart_toStartOf="@+id/img_app_logo"
+            app:layout_constraintTop_toBottomOf="@+id/img_app_logo" />
+
+        <TextView
+            android:id="@+id/txt_website_name_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_normal"
+            android:text="@string/app_name"
+
+            android:gravity="center"
+            android:fontFamily="@font/gtwalsheimpro_bold"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@+id/img_app_logo"
+            app:layout_constraintStart_toStartOf="@+id/img_app_logo"
+            app:layout_constraintTop_toBottomOf="@+id/txt_website_name" />
+        <TextView
+            android:id="@+id/txt_user_id_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_normal"
+            android:text="@string/app_name"
+
+            android:gravity="center"
+            android:fontFamily="@font/gtwalsheimpro_bold"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@+id/img_app_logo"
+            app:layout_constraintStart_toStartOf="@+id/img_app_logo"
+            app:layout_constraintTop_toBottomOf="@+id/txt_website_name_link" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_app_logo"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            style="@style/circle_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@mipmap/ic_launcher"
+            />
+
+       <!-- <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_website_name_link">
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_minBet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rv_demo_id"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/txt_minBet_header"
+                    style="@style/text_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Mini value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_money_chips"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_minBet_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_minBet_header" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/txt_minBet_header" />
+
+                <TextView
+                    android:id="@+id/txt_minRefil_header"
+                    style="@style/text_normal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/min_refill"
+
+                    android:visibility="visible"
+                    android:drawablePadding="@dimen/_5sdp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view2" />
+
+                <TextView
+                    android:id="@+id/txt_minCricketValue"
+                    style="@style/text_normal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+
+                    android:text="100"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/txt_minRefil_header" />
+
+                <TextView
+                    android:id="@+id/txt_minWithdraw_header"
+                    style="@style/text_normal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/min_withdraw"
+
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_minRefil_header" />
+
+                <TextView
+                    android:id="@+id/txt_minWithdrawValue"
+                    style="@style/text_normal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="100"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/txt_minWithdraw_header" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textColorHint="@color/red"
+            app:hintTextColor="@color/red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_option">
+
+            <EditText
+                android:id="@+id/edt_userName"
+                style="@style/EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:drawableRight="@drawable/ic_baseline_person_24"
+                android:hint="@string/user_name"
+                android:inputType="textCapWords"
+                android:textColorHint="@color/red"
+
+                />
+
+
+        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_deposite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColorHint="@color/red"
+            app:hintTextColor="@color/red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_user_id_name">
+
+            <EditText
+                android:id="@+id/edt_deposite_coin"
+                style="@style/EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:drawableRight="@drawable/money_chips"
+                android:hint="@string/deposit_coin_"
+                android:inputType="number"
+                android:textColorHint="@color/red"
+
+                />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/text_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/min_deposit_amt"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_size_vvsm"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            app:layout_constraintStart_toStartOf="@+id/til_deposite"
+            app:layout_constraintTop_toBottomOf="@+id/til_deposite" />
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_deposite_from_wallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            style="@style/checkBox"
+            android:text="Pay from wallet"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_deposite_reward"
+            style="@style/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="Use Rewards"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/cb_deposite_from_wallet"
+            app:layout_constraintTop_toBottomOf="@+id/cb_deposite_from_wallet"
+             />
+
+        <TextView
+            android:id="@+id/text_totalDeposit"
+            style="@style/text_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Deposit = 2500"
+            android:textSize="@dimen/txt_size_sm"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/cb_deposite_reward"
+            app:layout_constraintTop_toBottomOf="@+id/cb_deposite_reward" />
+
+        <Button
+            android:id="@+id/btn_deposit"
+            style="@style/Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:text="@string/deposit"
+            android:textSize="@dimen/txt_size_vvsm"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_totalDeposit" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/red"
+            android:visibility="gone"
+            android:elevation="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
