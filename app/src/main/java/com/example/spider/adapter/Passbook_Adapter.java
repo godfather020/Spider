@@ -43,6 +43,8 @@ public class Passbook_Adapter extends RecyclerView.Adapter<Passbook_Adapter.MyVi
     }
 
     public Passbook_Adapter(Context context, List<Transactionhistory> list_Website, ClickListener clickListener) {
+
+        
         this.context = context;
         this.ticketList=list_Website;
         this.list_Website=new ArrayList<Transactionhistory>();
