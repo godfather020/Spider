@@ -2,6 +2,8 @@ package com.example.spider.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Walletlist {
 
     @SerializedName("deposit")
@@ -32,6 +34,9 @@ public class Walletlist {
 
     @SerializedName("reward")
     private String reward;
+
+    @SerializedName("noticedata")
+    private List<Noticedatum> noticedata = null;
 
     public String getId() {
         return id;
@@ -104,5 +109,13 @@ public class Walletlist {
 
     public void setReward(String reward) {
         this.reward = reward;
+    }
+
+    public List<Noticedatum> getNoticedata() {
+        return noticedata;
+    }
+
+    public void setNoticedata(List<Noticedatum> noticedata) {
+        this.noticedata = noticedata;
     }
 }

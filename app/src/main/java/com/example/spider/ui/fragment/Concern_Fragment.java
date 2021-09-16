@@ -80,7 +80,7 @@ public class Concern_Fragment extends Fragment  {
     boolean deposite=false;
     List<String> permission=new ArrayList<String>();
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS= 3;
-    String title;
+    String title,help_line_no;
     Transactionhistory transactionhistory;
     boolean comeFromMenu=false;
 
@@ -95,8 +95,24 @@ public class Concern_Fragment extends Fragment  {
         activity=(MainActivity) getActivity();
         mAppSharedPref=new AppSharedPref(activity);
 
-
+        help_line_no=new AppSharedPref(activity).getString("helpline_no");
+        binding.textHelpNo.setText("Helpline No. : "+help_line_no);
         title=Concern_Fragment.this.getTag();
+
+        binding.textHelpNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(!help_line_no.equals("N/A")){
+
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:"+help_line_no));
+                    startActivity(intent);
+                }
+//                utils.copyText(activity,help_line_no);
+//                utils.showToast(activity,"Copied");
+            }
+        });
 
         if(title.equals(activity.getResources().getString(R.string.cancelation))){
 
@@ -563,4 +579,5 @@ public class Concern_Fragment extends Fragment  {
         }
 
     }
+
 }

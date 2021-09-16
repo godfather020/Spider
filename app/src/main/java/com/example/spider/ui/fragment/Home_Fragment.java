@@ -1,11 +1,6 @@
 package com.example.spider.ui.fragment;
 
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Parcelable;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,7 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,10 +33,8 @@ import com.example.spider.utils.ExtentionUtils;
 import com.example.spider.utils.PicassoImageLoadingService;
 import com.example.spider.view_model.Home_Fragment_viewModel;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Attributes;
 
 import ss.com.bannerslider.Slider;
 
@@ -56,9 +48,10 @@ public class Home_Fragment extends Fragment  {
     List<Banner> banners=new ArrayList<>();
     MainActivity activity;
     Home_Adapter.ClickListner clickListner;
-    Animation bounce_anim,LR_anim,RL_anim,rotate_zoom,blink;
+    Animation bounce_anim,LR_anim,RL_anim,rotate_zoom,blink,right_translate_anim;
     ExtentionUtils utils=new ExtentionUtils();
     Fragment fragment;
+    String notice;
     public String REWARD_AMT ="rewardAmt", REFERAL_USER ="referalUser";
 
 
@@ -77,7 +70,8 @@ public class Home_Fragment extends Fragment  {
         bounce_anim= AnimationUtils.loadAnimation(activity,R.anim.bounce_anim);
         LR_anim= AnimationUtils.loadAnimation(activity,R.anim.left_to_right_anim);
         RL_anim= AnimationUtils.loadAnimation(activity,R.anim.right_to_left_anim);
-        rotate_zoom=AnimationUtils.loadAnimation(activity,R.anim.zoom_in_rotate_anim);
+        rotate_zoom=AnimationUtils.loadAnimation(activity,R.anim.zoom_in_fade_in_anim);
+        right_translate_anim=AnimationUtils.loadAnimation(activity,R.anim.right_translate_anim);
         blink=AnimationUtils.loadAnimation(activity,R.anim.blink_anim);
         home_fragment_viewModel=new ViewModelProvider(requireActivity()).get(Home_Fragment_viewModel.class);
         View view =binding.getRoot();
@@ -122,6 +116,7 @@ public class Home_Fragment extends Fragment  {
 
 //        binding.imgHomeApp.setAnimation(rotate_zoom);
 
+//        binding.txtImpNotice.setAnimation(right_translate_anim);
         binding.clDepoiste.setAnimation(RL_anim);
         binding.clWithdraw.setAnimation(LR_anim);
         binding.imgCreateid.setAnimation(blink);
@@ -129,15 +124,33 @@ public class Home_Fragment extends Fragment  {
 
         home_fragment_viewModel.getWalletList(activity,binding).observe(activity,walletlist -> {
 
+            binding.progressBar.setVisibility(View.GONE);
             if(walletlist!=null){
 
 //                String total=String.valueOf(Integer.parseInt(walletlist.getTotal().toString())+Integer.parseInt(walletlist.getReward().toString()));
                 binding.txtWalletAmt.setText(walletlist.getTotal().toString());
+                notice=walletlist.getNoticedata().get(0).getNotice().toString();
+
 //                new AppSharedPref(activity).saveString(REWARD_AMT,walletlist.getReward().toString());
 //                new AppSharedPref(activity).saveString(REFERAL_USER,walletlist.getReward().toString());
+
+                if(notice!=null && !notice.isEmpty()){
+
+                    binding.txtImpNotice.setText(notice);
+                    binding.txtImpNotice.setAnimation(right_translate_anim);
+
+                }else binding.txtImpNotice.setVisibility(View.GONE);
+
+                if(walletlist.getNoticedata().get(0).getSupportno()!=null && !walletlist.getNoticedata().get(0).getSupportno().isEmpty()){
+
+                    new AppSharedPref(activity).saveString("helpline_no",walletlist.getNoticedata().get(0).getSupportno());
+
+                }else new AppSharedPref(activity).saveString("helpline_no","N/A");
             }
 
         });
+
+
 
         home_fragment_viewModel.getRewardtList(activity,binding).observe(activity,referaldatum -> {
 
