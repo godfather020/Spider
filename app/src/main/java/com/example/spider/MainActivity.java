@@ -64,8 +64,7 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class
-MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private AppSharedPref mAppSharePref;
     private ExtentionUtils utils = new ExtentionUtils();
@@ -104,9 +103,9 @@ MainActivity extends AppCompatActivity {
 
 
         mAppSharePref = new AppSharedPref(getApplicationContext());
-
+        mAppSharePref.saveInteger("entry_exit_fragment",2);
         fragment = new Home_Fragment();
-        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true,getResources().getString(R.string.home), null);
+        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true,getResources().getString(R.string.home), null,MainActivity.this);
 
         UserDetail userDetail = mAppSharePref.getUserData();
 
@@ -168,29 +167,42 @@ MainActivity extends AppCompatActivity {
                 switch (item.getId()) {
 
                     case HOME_ID:
+                        mAppSharePref.saveInteger("entry_exit_fragment",2);
                         fragment = new Home_Fragment();
-                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.home), null);
+                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.home), null,MainActivity.this);
                         for(int i=0; i<fragmentManager.getBackStackEntryCount();i++){
 
                             fragmentManager.popBackStackImmediate();
                         }
-
+                        mAppSharePref.saveInteger("bottomMenuNo",1);
                         break;
 
                     case OFFER_ID:
+                        if(mAppSharePref.getInteger("bottomMenuNo")>=2){
+                            mAppSharePref.saveInteger("entry_exit_fragment",2);
+                        }else
+                            mAppSharePref.saveInteger("entry_exit_fragment",1);
                         fragment = new Offer_Fragment();
-                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.offer), null);
+                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.offer), null,MainActivity.this);
+                        mAppSharePref.saveInteger("bottomMenuNo",2);
                         break;
 
                     case PASSBOOK_ID:
 
+                        if(mAppSharePref.getInteger("bottomMenuNo")>=3){
+                            mAppSharePref.saveInteger("entry_exit_fragment",2);
+                        }else
+                            mAppSharePref.saveInteger("entry_exit_fragment",1);
                         fragment = new Passbook_Fragment();
-                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.tran_history), null);
+                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.tran_history), null,MainActivity.this);
+                        mAppSharePref.saveInteger("bottomMenuNo",3);
                         break;
 
                     case IDS_ID:
+                        mAppSharePref.saveInteger("entry_exit_fragment",1);
                         fragment = new My_Id_Fragment();
-                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.my_id), null);
+                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.my_id), null,MainActivity.this);
+                        mAppSharePref.saveInteger("bottomMenuNo",4);
                         break;
 
 

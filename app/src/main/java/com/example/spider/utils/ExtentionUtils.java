@@ -48,6 +48,8 @@ import okhttp3.RequestBody;
 
 public class ExtentionUtils {
 
+    int entry_exit_fragment=0;
+
     public void showToast(Context context,String Msg){
         Toast.makeText(context,Msg,Toast.LENGTH_LONG).show();
 
@@ -56,10 +58,10 @@ public class ExtentionUtils {
     public  void loadFragment( FragmentManager fragmentManager, Fragment fragment
             , int containerId, boolean shouldRemovePreviousFragments, CharSequence currentTitle, Bundle arg){
 
-
         FragmentTransaction transaction=fragmentManager.beginTransaction();
 
         if(shouldRemovePreviousFragments){
+
             if(fragmentManager.getBackStackEntryCount()>0){
 
                 for ( int i=0;i<=fragmentManager.getBackStackEntryCount();i++) {
@@ -74,7 +76,37 @@ public class ExtentionUtils {
             Log.d("bundle==",arg.toString());
             fragment.setArguments(arg);
         }
+
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
+        transaction.replace(containerId,fragment,currentTitle.toString()).commit();
+    }
+    public  void loadFragment( FragmentManager fragmentManager, Fragment fragment
+            , int containerId, boolean shouldRemovePreviousFragments, CharSequence currentTitle, Bundle arg,Context context){
+
+        FragmentTransaction transaction=fragmentManager.beginTransaction();
+
+        if(shouldRemovePreviousFragments){
+            entry_exit_fragment=new AppSharedPref(context).getInteger("entry_exit_fragment");
+            if(fragmentManager.getBackStackEntryCount()>0){
+
+                for ( int i=0;i<=fragmentManager.getBackStackEntryCount();i++) {
+
+                    fragmentManager.popBackStackImmediate();
+                }
+            }
+        }else transaction.addToBackStack(currentTitle.toString());
+
+        if(arg!=null) {
+
+            Log.d("bundle==",arg.toString());
+            fragment.setArguments(arg);
+        }
+        if(entry_exit_fragment==1){
+            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+        }else if (entry_exit_fragment==2){
+            transaction.setCustomAnimations( R.anim.enter_from_left, R.anim.exit_to_right);
+        }else
+            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
         transaction.replace(containerId,fragment,currentTitle.toString()).commit();
     }
 

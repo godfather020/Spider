@@ -117,6 +117,9 @@ public class Home_Fragment extends Fragment  {
 //        binding.imgHomeApp.setAnimation(rotate_zoom);
 
 //        binding.txtImpNotice.setAnimation(right_translate_anim);
+
+//        binding.txtImpNotice.setSelected(true);
+//        Log.d("text", "Text length = "+binding.txtImpNotice.getText().toString().length());
         binding.clDepoiste.setAnimation(RL_anim);
         binding.clWithdraw.setAnimation(LR_anim);
         binding.imgCreateid.setAnimation(blink);
@@ -137,7 +140,13 @@ public class Home_Fragment extends Fragment  {
                 if(notice!=null && !notice.isEmpty()){
 
                     binding.txtImpNotice.setText(notice);
-                    binding.txtImpNotice.setAnimation(right_translate_anim);
+
+                    if( binding.txtImpNotice.getText().length()<=41) {
+                        binding.txtImpNotice.setAnimation(right_translate_anim);
+                    }
+                    else {
+                        binding.txtImpNotice.setSelected(true);
+                    }
 
                 }else binding.txtImpNotice.setVisibility(View.GONE);
 
