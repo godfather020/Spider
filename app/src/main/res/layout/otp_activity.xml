@@ -97,8 +97,6 @@
                     android:drawableRight="@drawable/ic_baseline_local_phone_24"
                     android:hint="@string/phone_no"
                     android:inputType="number"
-
-                    android:textColorHint="@color/red"
                     style="@style/EditText_without_bg_border"
 
 

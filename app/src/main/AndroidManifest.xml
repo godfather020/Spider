@@ -48,6 +48,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
  <activity android:name=".ui.activity.Forgot_Activity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".Intro_Activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
         <service
             android:name=".firebase.MyFirebaseMessagingService"

@@ -2,6 +2,7 @@ package com.example.spider.ui.fragment;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +30,7 @@ import com.example.spider.model.Approvedrequestidlist;
 import com.example.spider.model.Banner;
 import com.example.spider.model.Website_item;
 import com.example.spider.utils.AppSharedPref;
+import com.example.spider.utils.Constant;
 import com.example.spider.utils.ExtentionUtils;
 import com.example.spider.utils.PicassoImageLoadingService;
 import com.example.spider.view_model.Home_Fragment_viewModel;
@@ -37,6 +39,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ss.com.bannerslider.Slider;
+import tourguide.tourguide.Overlay;
+import tourguide.tourguide.Pointer;
+import tourguide.tourguide.ToolTip;
+import tourguide.tourguide.TourGuide;
 
 public class Home_Fragment extends Fragment  {
 
@@ -52,7 +58,10 @@ public class Home_Fragment extends Fragment  {
     ExtentionUtils utils=new ExtentionUtils();
     Fragment fragment;
     String notice;
+    boolean withdraw,createId;
+    TourGuide mTourGuideHandler = null;
     public String REWARD_AMT ="rewardAmt", REFERAL_USER ="referalUser";
+    Overlay overlay;
 
 
     @Override
@@ -75,6 +84,8 @@ public class Home_Fragment extends Fragment  {
         blink=AnimationUtils.loadAnimation(activity,R.anim.blink_anim);
         home_fragment_viewModel=new ViewModelProvider(requireActivity()).get(Home_Fragment_viewModel.class);
         View view =binding.getRoot();
+        overlay=new Overlay();
+        overlay.setBackgroundColor(activity.getResources().getColor(R.color.overlaycolor));
         initView();
         Log.e("onCreate","Runnnnnnnn........HomeFragment");
 //        Log.d("lifecycle","onCreateView invoked");
@@ -124,6 +135,15 @@ public class Home_Fragment extends Fragment  {
         binding.clWithdraw.setAnimation(LR_anim);
         binding.imgCreateid.setAnimation(blink);
         binding.txtCreateid.setAnimation(blink);
+
+        if(new AppSharedPref(activity).isFirstTimeLaunch()) {
+            mTourGuideHandler = TourGuide.init(activity).with(TourGuide.Technique.Click)
+                    .setPointer(new Pointer())
+                    .setToolTip(new ToolTip().setTitle("Deposite...").setDescription(" in wallet...").setBackgroundColor(activity.getResources().getColor(R.color.app_theme_color)))
+                    .setOverlay(overlay)
+                    .playOn(binding.clDepoiste);
+           
+        }
 
         home_fragment_viewModel.getWalletList(activity,binding).observe(activity,walletlist -> {
 
@@ -185,32 +205,65 @@ public class Home_Fragment extends Fragment  {
 
         });
 
+
         binding.clDepoiste.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment deposite_fragment=new Deposite_Fragment();
-
-                utils.loadFragment(activity.getSupportFragmentManager(),deposite_fragment,R.id.main_container,false,
-                        activity.getResources().getString(R.string.deposit),null);
+                if(new AppSharedPref(activity).isFirstTimeLaunch()) {
+                    mTourGuideHandler.cleanUp();
+                    mTourGuideHandler = TourGuide.init(activity).with(TourGuide.Technique.Click)
+                            .setPointer(new Pointer())
+                            .setToolTip(new ToolTip().setTitle("Withdraw...").setDescription(" from wallet...").setBackgroundColor(activity.getResources().getColor(R.color.app_theme_color)))
+                            .setOverlay(overlay)
+                            .playOn(binding.clWithdraw);
+                }else {
+                    new AppSharedPref(activity).saveBoolean(Constant.IS_FIRST_TIME_LAUNCH, false);
+                    Fragment deposite_fragment = new Deposite_Fragment();
+                    utils.loadFragment(activity.getSupportFragmentManager(), deposite_fragment, R.id.main_container, false,
+                            activity.getResources().getString(R.string.deposit), null);
+                }
             }
         });
 
         binding.clWithdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment withdraw_fragment=new Withdraw_Fragment();
+                if(new AppSharedPref(activity).isFirstTimeLaunch()) {
+                    mTourGuideHandler.cleanUp();
+                    mTourGuideHandler = TourGuide.init(activity).with(TourGuide.Technique.Click)
+                            .setPointer(new Pointer())
+                            .setToolTip(new ToolTip().setTitle("Create your id...").setDescription(" on website...").setBackgroundColor(activity.getResources().getColor(R.color.app_theme_color)))
+                            .setOverlay(overlay)
+                            .playOn(binding.clBtnCreateId);
 
-                utils.loadFragment(activity.getSupportFragmentManager(),withdraw_fragment,R.id.main_container,false,
-                        activity.getResources().getString(R.string.withdraw),null);
+                }else {
+                    Fragment withdraw_fragment = new Withdraw_Fragment();
+
+                    utils.loadFragment(activity.getSupportFragmentManager(), withdraw_fragment, R.id.main_container, false,
+                            activity.getResources().getString(R.string.withdraw), null);
+                }
             }
         });
         binding.clBtnCreateId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment website_list_fragment=new Website_List_Fragment();
 
-                utils.loadFragment(activity.getSupportFragmentManager(),website_list_fragment,R.id.main_container,false,
-                        activity.getResources().getString(R.string.create_id),null);
+                if(new AppSharedPref(activity).isFirstTimeLaunch()) {
+                    mTourGuideHandler.cleanUp();
+
+                    mTourGuideHandler = TourGuide.init(activity).with(TourGuide.Technique.Click)
+                            .setPointer(new Pointer().setGravity(Gravity.START))
+                            .setToolTip(new ToolTip().setTitle("Show your...").setDescription(" menu list...").setBackgroundColor(activity.getResources().getColor(R.color.app_theme_color)))
+                            .setOverlay(overlay)
+                            .playOn(activity.toolbar);
+                    activity.tourguideInstanse(mTourGuideHandler);
+//                    new AppSharedPref(activity).saveBoolean(Constant.IS_FIRST_TIME_LAUNCH,false);
+                }else {
+                    Fragment website_list_fragment = new Website_List_Fragment();
+
+                    utils.loadFragment(activity.getSupportFragmentManager(), website_list_fragment, R.id.main_container, false,
+                            activity.getResources().getString(R.string.create_id), null);
+                }
             }
         });
 

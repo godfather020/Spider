@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -13,9 +13,35 @@
 <!--    <color name="red">#37aef2</color>-->
     <color name="yellow">#F2A31E</color>
     <color name="green">#62E800</color>
-    <color name="app_theme_color">#37aef2</color>
+    <color name="app_theme_color" >#009a8f</color>
+<!--    <color name="app_theme_color" tools:ignore="ReferenceType">@drawable/gradient</color>-->
+
+
     <color name="orange">#FFA500</color>
 
 
+    <color name="overlaycolor">#80000000</color>
+
+    <!-- Screens background color-->
+    <color name="bg_screen1">#16c266</color>
+    <color name="bg_screen2">#90c2bb</color>
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#39d1ba</color>
+    <color name="dot_dark_screen2">#14a895</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#8de7f9</color>
+    <color name="dot_light_screen2">#8cf9eb</color>
+
+    <array name="array_dot_active">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen2</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen2</item>
+    </array>
 
 </resources>

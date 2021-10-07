@@ -60,4 +60,10 @@ public class AppSharedPref {
 
         return  new SharedPrefrenceUtil().getInteger(sp,key);
     }
+
+
+    public boolean isFirstTimeLaunch() {
+        return new SharedPrefrenceUtil().isFirstTimeLaunch(sp,Constant.IS_FIRST_TIME_LAUNCH);
+    }
+
 }

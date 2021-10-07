@@ -19,6 +19,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -35,6 +36,10 @@ android {
 repositories {
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     maven { url 'https://oss.jfrog.org/artifactory/oss-snapshot-local' }
+    mavenCentral()
+    maven(){
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
 }
 dependencies {
 
@@ -72,7 +77,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-messaging'
-    implementation 'com.google.firebase:firebase-core:19.0.0'
+    implementation 'com.google.firebase:firebase-core:19.0.1'
+    implementation 'androidx.browser:browser:1.3.0'
 
 
     //picasso
@@ -82,10 +88,14 @@ dependencies {
     //banner slider
     implementation 'com.ss.bannerslider:bannerslider:2.0.0'
 
+    //zoom image
     implementation 'com.jsibbold:zoomage:1.3.1-SNAPSHOT'
     implementation 'com.jsibbold:zoomage:1.3.1'
 
-
+    //tour guid
+    implementation ('com.github.worker8:tourguide:1.0.13-SNAPSHOT@aar'){
+        transitive=true
+    }
 
 
 

@@ -39,15 +39,17 @@ public class Splash_Activity  extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(new AppSharedPref(getApplicationContext()).getBoolean("login")){
-                Intent intent=new Intent(Splash_Activity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                }else {
-                    Intent intent=new Intent(Splash_Activity.this, Otp_Activity.class);
-                    startActivity(intent);
-                    finish();
-                }
+
+                if (new AppSharedPref(getApplicationContext()).getBoolean("login")) {
+                        Intent intent = new Intent(Splash_Activity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Intent intent = new Intent(Splash_Activity.this, Otp_Activity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
             }
         },2000);
     }

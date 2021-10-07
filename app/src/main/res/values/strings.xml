@@ -23,7 +23,7 @@
     <string name="accept_line_of_term_condtinon">I\'ve read and accept the</string>
     <string name="term_condtinon"> <u>Term &amp; Condition</u></string>
     <string name="term_condtinon_">Term &amp; Condition</string>
-    <string name="sign_in_with_otp"><![CDATA[<font>Sign In With</font><font color=#37aef2> OTP</font>]]></string>
+    <string name="sign_in_with_otp"><![CDATA[<font>Sign In With</font><font color=#009a8f> OTP</font>]]></string>
     <string name="wallet_balance">Wallet Balance</string>
     <string name="deposit_coin_">Deposit coins <sup>*</sup></string>
     <string name="deposit_coin">Deposit coins </string>
@@ -129,4 +129,8 @@
         <item>Change ID Password</item>
         <item>Reward</item>
     </string-array>
+
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
 </resources>

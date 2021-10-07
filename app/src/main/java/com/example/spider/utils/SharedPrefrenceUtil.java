@@ -1,12 +1,7 @@
 package com.example.spider.utils;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 
-import androidx.annotation.AnyRes;
-
-import com.example.spider.model.UserDetail;
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class SharedPrefrenceUtil {
@@ -74,4 +69,9 @@ public class SharedPrefrenceUtil {
         editor.clear();
         editor.apply();
     }
+    public boolean isFirstTimeLaunch(SharedPreferences sp, String key) {
+
+        return sp.getBoolean(key,true);
+    }
+
 }

@@ -35,6 +35,7 @@ import com.example.spider.api.RetrofitInstance;
 import com.example.spider.api.RetrofitInterface;
 import com.example.spider.databinding.ActivityMainBinding;
 import com.example.spider.firebase.MyFirebaseMessagingService;
+import com.example.spider.inter_face.Tourguide;
 import com.example.spider.model.DATA;
 import com.example.spider.model.Noti_Data;
 import com.example.spider.model.Organisation_Pojo;
@@ -63,15 +64,19 @@ import com.google.gson.Gson;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import tourguide.tourguide.Overlay;
+import tourguide.tourguide.Pointer;
+import tourguide.tourguide.ToolTip;
+import tourguide.tourguide.TourGuide;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Tourguide {
 
     private AppSharedPref mAppSharePref;
     private ExtentionUtils utils = new ExtentionUtils();
     public ActivityMainBinding activityMainBinding;
-    Toolbar toolbar;
+    public Toolbar toolbar;
     public TextView toolbar_title;
-    ActionBarDrawerToggle toggle;
+    public ActionBarDrawerToggle toggle;
     FragmentManager fragmentManager = getSupportFragmentManager();
     private final static int HOME_ID = 1;
     private final static int OFFER_ID = 2;
@@ -84,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
     boolean comeFromNoti =false;
     Noti_Data noti_data;
     private long pressedTime;
+    TourGuide mTourGuideHandler;
+    Overlay overlay;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,13 +137,28 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        overlay=new Overlay();
+        overlay.setBackgroundColor(getResources().getColor(R.color.overlaycolor));
+
+
+
 
 
         toggle = new ActionBarDrawerToggle(this, activityMainBinding.drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer) {
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
+                if(new AppSharedPref(MainActivity.this).isFirstTimeLaunch()) {
+                    mTourGuideHandler.cleanUp();
+                    mTourGuideHandler = TourGuide.init(MainActivity.this).with(TourGuide.Technique.Click)
+                            .setPointer(new Pointer().setGravity(Gravity.START))
+                            .setToolTip(new ToolTip().setTitle("Show your...").setDescription(" id list...").setBackgroundColor(getResources().getColor(R.color.app_theme_color)))
+                            .setOverlay(overlay)
+                            .playOn(activityMainBinding.navView.getRootView().findViewById(R.id.nav_my_id));
+
+                }else {
+                    super.onDrawerOpened(drawerView);
+                }
             }
 
             @Override
@@ -297,14 +320,24 @@ public class MainActivity extends AppCompatActivity {
                         item.setCheckable(true);
                         break;
                     case R.id.nav_my_id:
-                        fragment = new My_Id_Fragment();
-                        Bundle bundle1=new Bundle();
-                        bundle1.putBoolean("sideNav",true);
-                        fragment.setArguments(bundle1);
-                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, false, getResources().getString(R.string.my_id), bundle1);
+                        if(new AppSharedPref(MainActivity.this).isFirstTimeLaunch()) {
+                    mTourGuideHandler.cleanUp();
+                   /* mTourGuideHandler = TourGuide.init(MainActivity.this).with(TourGuide.Technique.Click)
+                            .setPointer(new Pointer().setGravity(Gravity.START))
+                            .setToolTip(new ToolTip().setTitle("Create your id...").setDescription(" on website...").setBackgroundColor(getResources().getColor(R.color.app_theme_color)))
+                            .setOverlay(overlay)
+                            .playOn(activityMainBinding.navView.getRootView().findViewById(R.id.nav_my_id));*/
+                    new AppSharedPref(MainActivity.this).saveBoolean(Constant.IS_FIRST_TIME_LAUNCH,false);
+                }else {
+                            fragment = new My_Id_Fragment();
+                            Bundle bundle1 = new Bundle();
+                            bundle1.putBoolean("sideNav", true);
+                            fragment.setArguments(bundle1);
+                            utils.loadFragment(fragmentManager, fragment, R.id.main_container, false, getResources().getString(R.string.my_id), bundle1);
 
-                        closeDrawer();
-                        item.setCheckable(true);
+                            closeDrawer();
+                            item.setCheckable(true);
+                        }
                         break;
                     case R.id.nav_deposite:
                         fragment = new Deposite_Fragment();
@@ -573,5 +606,9 @@ public void setBottomBarTab(int tab_no){
     }
 
 
+    @Override
+    public void tourguideInstanse(TourGuide mTourGuideHandler) {
 
+        this.mTourGuideHandler=mTourGuideHandler;
+    }
 }
