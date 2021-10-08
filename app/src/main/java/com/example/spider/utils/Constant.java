@@ -37,6 +37,7 @@ public class Constant {
     public static String FUNC_REFERAL_CODE="referalcode";
     public static String FUNC_USER_REFERAL="userreferal";
     public static String IS_FIRST_TIME_LAUNCH="IsFirstTimeLaunch";
+    public static String FUNC_GET_OTP="getOtp";
 
 
 }

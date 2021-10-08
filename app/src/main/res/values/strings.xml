@@ -107,6 +107,26 @@
     <string name="user_referred">User Referred</string>
     <string name="banner">banner</string>
 
+    <string name="deposit_tour_guide_description">You can deposit any amount into your wallet.</string>
+    <string name="withdraw_tour_guide_description">You can withdrawal your wallet amount at any time.</string>
+    <string name="create_id_tour_guide_description">You can send website id request from here.</string>
+    <string name="transaction_tour_guide_description">You can track all your transactions details here.</string>
+    <string name="my_id_tour_guide_description">You can see your available list of Ids here.</string>
+    <string name="offer_tour_guide_description">Here you can see available offers on Spider Platform.</string>
+    <string name="notification_tour_guide_description">You can check your important notification messages here.</string>
+    <string name="help_tour_guide_description">You can discuss your concern with us form here.</string>
+    <string name="payment_tour_guide_description">You can operate your payment methods here.</string>
+
+    Deposit :
+    Withdrawal :
+    Create Id :
+    Transaction :
+    My Id :
+    Offers :
+    Notification :
+    Help :
+    Payment :
+
     <string-array name="drop_down_array">
 
         <item>Select type of concern</item>

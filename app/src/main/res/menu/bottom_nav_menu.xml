@@ -12,20 +12,20 @@
 
     <item
         android:title="Offer"
-        android:id="@+id/bottom_menu_id"
+        android:id="@+id/bottom_menu_offer"
         android:icon="@drawable/ic_baseline_local_offer_24" />
 
     <item
         android:title="Passbook"
         android:icon="@drawable/ic_baseline_passbook_24"
-        android:id="@+id/bottom_menu_time" />
+        android:id="@+id/bottom_menu_passbok" />
 
 
 
     <item
         android:title="IDs"
         android:icon="@drawable/ic_id_24"
-        android:id="@+id/bottom_menu_project" />
+        android:id="@+id/bottom_menu_myId" />
 
     <!--<item
         android:title="CHAT"

@@ -102,11 +102,25 @@ public class Home_Fragment extends Fragment  {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.noti:
+
+                if(new AppSharedPref(activity).isFirstTimeLaunch()) {
+                    mTourGuideHandler.cleanUp();
+
+                    mTourGuideHandler = TourGuide.init(activity).with(TourGuide.Technique.Click)
+                            .setPointer(new Pointer().setGravity(Gravity.CENTER))
+                            .setToolTip(new ToolTip().setTitle(activity.getResources().getString(R.string.offer)).setDescription(activity.getResources().getString(R.string.offer_tour_guide_description)).setBackgroundColor(activity.getResources().getColor(R.color.app_theme_color)).setGravity(Gravity.TOP))
+                            .setOverlay(overlay)
+                            .playOn(activity.activityMainBinding.bottomNavigationView.getCellById(activity.OFFER_ID));
+                    activity.tourguideInstanse(mTourGuideHandler);
+//                    new AppSharedPref(activity).saveBoolean(Constant.IS_FIRST_TIME_LAUNCH,false);
+                }else {
+
                 fragment = new Notification_Fragment();
                 utils.loadFragment(activity.getSupportFragmentManager(), fragment, R.id.main_container, false, getResources().getString(R.string.notifiction), null);
+        }
                 break;
         }
         return true;
@@ -139,7 +153,7 @@ public class Home_Fragment extends Fragment  {
         if(new AppSharedPref(activity).isFirstTimeLaunch()) {
             mTourGuideHandler = TourGuide.init(activity).with(TourGuide.Technique.Click)
                     .setPointer(new Pointer())
-                    .setToolTip(new ToolTip().setTitle("Deposite...").setDescription(" in wallet...").setBackgroundColor(activity.getResources().getColor(R.color.app_theme_color)))
+                    .setToolTip(new ToolTip().setTitle(activity.getResources().getString(R.string.deposit)).setDescription(activity.getResources().getString(R.string.deposit_tour_guide_description)).setBackgroundColor(activity.getResources().getColor(R.color.app_theme_color)))
                     .setOverlay(overlay)
                     .playOn(binding.clDepoiste);
            
@@ -213,7 +227,7 @@ public class Home_Fragment extends Fragment  {
                     mTourGuideHandler.cleanUp();
                     mTourGuideHandler = TourGuide.init(activity).with(TourGuide.Technique.Click)
                             .setPointer(new Pointer())
-                            .setToolTip(new ToolTip().setTitle("Withdraw...").setDescription(" from wallet...").setBackgroundColor(activity.getResources().getColor(R.color.app_theme_color)))
+                            .setToolTip(new ToolTip().setTitle(activity.getResources().getString(R.string.withdraw)).setDescription(activity.getResources().getString(R.string.withdraw_tour_guide_description)).setBackgroundColor(activity.getResources().getColor(R.color.app_theme_color)))
                             .setOverlay(overlay)
                             .playOn(binding.clWithdraw);
                 }else {
@@ -232,7 +246,7 @@ public class Home_Fragment extends Fragment  {
                     mTourGuideHandler.cleanUp();
                     mTourGuideHandler = TourGuide.init(activity).with(TourGuide.Technique.Click)
                             .setPointer(new Pointer())
-                            .setToolTip(new ToolTip().setTitle("Create your id...").setDescription(" on website...").setBackgroundColor(activity.getResources().getColor(R.color.app_theme_color)))
+                            .setToolTip(new ToolTip().setTitle(activity.getResources().getString(R.string.create_id)).setDescription(activity.getResources().getString(R.string.create_id_tour_guide_description)).setBackgroundColor(activity.getResources().getColor(R.color.app_theme_color)))
                             .setOverlay(overlay)
                             .playOn(binding.clBtnCreateId);
 
@@ -252,10 +266,11 @@ public class Home_Fragment extends Fragment  {
                     mTourGuideHandler.cleanUp();
 
                     mTourGuideHandler = TourGuide.init(activity).with(TourGuide.Technique.Click)
-                            .setPointer(new Pointer().setGravity(Gravity.START))
-                            .setToolTip(new ToolTip().setTitle("Show your...").setDescription(" menu list...").setBackgroundColor(activity.getResources().getColor(R.color.app_theme_color)))
+                            .setPointer(new Pointer().setGravity(Gravity.CENTER))
+                            .setToolTip(new ToolTip().setTitle(activity.getResources().getString(R.string.notifiction)).setDescription(activity.getResources().getString(R.string.notification_tour_guide_description)).setBackgroundColor(activity.getResources().getColor(R.color.app_theme_color)))
                             .setOverlay(overlay)
-                            .playOn(activity.toolbar);
+                            .playOn(activity.toolbar.getChildAt(1));
+//                            .playOn(activity.activityMainBinding.bottomNavigationView.getCellById(activity.OFFER_ID));
                     activity.tourguideInstanse(mTourGuideHandler);
 //                    new AppSharedPref(activity).saveBoolean(Constant.IS_FIRST_TIME_LAUNCH,false);
                 }else {

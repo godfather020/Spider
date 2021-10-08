@@ -9,33 +9,20 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.spider.MainActivity;
 import com.example.spider.R;
-import com.example.spider.databinding.LoginActivityBinding;
 import com.example.spider.databinding.OtpActivityBinding;
 import com.example.spider.utils.AppSharedPref;
 import com.example.spider.utils.ExtentionUtils;
-import com.example.spider.view_model.Login_viewModel;
 import com.example.spider.view_model.Otp_viewModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
-import com.rilixtech.widget.countrycodepicker.Country;
-import com.rilixtech.widget.countrycodepicker.CountryCodePicker;
 
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Otp_Activity extends AppCompatActivity {
 
@@ -69,9 +56,9 @@ public class Otp_Activity extends AppCompatActivity {
 
                 viewModel.checkPhoneNo(Otp_Activity.this,binding.edtMobNo.getText().toString()).observe(Otp_Activity.this,exist -> {
 
-                    binding.progressBar.setVisibility(View.GONE);
-                    if(exist){
 
+                    if(exist){
+                        binding.progressBar.setVisibility(View.GONE);
 
                         Intent intent=new Intent(Otp_Activity.this, Login_Activity.class);
                         intent.putExtra("country_code",binding.countryCodePicker.getSelectedCountryCode());
@@ -85,6 +72,7 @@ public class Otp_Activity extends AppCompatActivity {
 
                             getOtp();
                         }else {
+                            binding.progressBar.setVisibility(View.GONE);
                             utils.showToast(Otp_Activity.this,"Please enter valid mobile number.");
                             binding.edtMobNo.setFocusable(true);
                         }
@@ -105,7 +93,7 @@ public class Otp_Activity extends AppCompatActivity {
 
     public void getOtp(){
 
-        PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks = null;
+     /*   PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks = null;
         final String[] code = new String[1];
         final String[] mVerifiction = new String[1];
 
@@ -137,13 +125,13 @@ public class Otp_Activity extends AppCompatActivity {
                 mVerifiction[0] =s;
             }
         };
-                /* PhoneAuthOptions options =
+                *//* PhoneAuthOptions options =
                          PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
                                  .setPhoneNumber("+91" + binding.edtMobNo.getText().toString())       // Phone number to verify
                                  .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
                                  .setActivity(Login_Activity.this)                 // Activity (for callback binding)
                                  .setCallbacks(mCallBacks)          // OnVerificationStateChangedCallbacks
-                                 .build();*/
+                                 .build();*//*
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 "+91" +  binding.edtMobNo.getText().toString() ,
@@ -154,8 +142,7 @@ public class Otp_Activity extends AppCompatActivity {
         );
 
 //                 PhoneAuthProvider.verifyPhoneNumber(options);
-
-
+*/
         final Dialog dialog = new Dialog(Otp_Activity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
@@ -163,17 +150,40 @@ public class Otp_Activity extends AppCompatActivity {
 
         EditText edtOtp =  dialog.findViewById(R.id.edt_otp);
         TextView txt =dialog.findViewById(R.id.txt_otp);
+        final String[] otp = {null};
+        viewModel.getOtp(Otp_Activity.this,binding.edtMobNo.getText().toString()).observe(Otp_Activity.this,get_otp -> {
+
+            binding.progressBar.setVisibility(View.GONE);
+
+            if(get_otp!=null){
+
+                otp[0] =get_otp;
+                edtOtp.setText(get_otp);
+            }
+
+        });
+
 
         txt.setText(getResources().getString(R.string.enter_otp_title)+" "+binding.countryCodePicker.getSelectedCountryCode()+"-"+binding.edtMobNo.getText().toString());
         Button dialogButton =  dialog.findViewById(R.id.btn_otp_submit);
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                code[0]=edtOtp.getText().toString();
+               /* code[0]=edtOtp.getText().toString();
                 PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerifiction[0], code[0]);
 
                 //signing the user
-                signInWithPhoneAuthCredential(credential);
+                signInWithPhoneAuthCredential(credential);*/
+                if(otp[0].equals(edtOtp.getText().toString())){
+
+                    Intent intent=new Intent(Otp_Activity.this, Registration_Activity.class);
+                    intent.putExtra("country_code",binding.countryCodePicker.getSelectedCountryCode());
+                    intent.putExtra("phone_no",binding.edtMobNo.getText().toString());
+                    startActivity(intent);
+                    finish();
+                }else {
+                    utils.showToast(getApplicationContext(),"Something went wrong");
+                }
 
                 dialog.dismiss();
             }
@@ -182,7 +192,7 @@ public class Otp_Activity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+   /* private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
 
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -204,5 +214,5 @@ public class Otp_Activity extends AppCompatActivity {
             }
 
         });
-    }
+    }*/
 }

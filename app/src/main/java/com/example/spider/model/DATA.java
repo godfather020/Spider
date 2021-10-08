@@ -112,6 +112,9 @@ public class DATA implements Serializable {
 @SerializedName("reward")
     private String reward;
 
+@SerializedName("otp")
+    private String otp;
+
 
 
 
@@ -515,5 +518,13 @@ public class DATA implements Serializable {
 
     public void setReward(String reward) {
         this.reward = reward;
+    }
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
     }
 }

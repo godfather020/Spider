@@ -16,6 +16,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -78,10 +79,10 @@ public class MainActivity extends AppCompatActivity implements Tourguide {
     public TextView toolbar_title;
     public ActionBarDrawerToggle toggle;
     FragmentManager fragmentManager = getSupportFragmentManager();
-    private final static int HOME_ID = 1;
-    private final static int OFFER_ID = 2;
-    private final static int PASSBOOK_ID = 3;
-    private final static int IDS_ID = 4;
+    public final static int HOME_ID = 1;
+    public final static int OFFER_ID = 2;
+    public final static int PASSBOOK_ID = 3;
+    public final static int IDS_ID = 4;
     private Fragment fragment;
     ExtentionUtils extentionUtils=new ExtentionUtils();
     RetrofitInterface retrofitInterface;
@@ -152,9 +153,9 @@ public class MainActivity extends AppCompatActivity implements Tourguide {
                     mTourGuideHandler.cleanUp();
                     mTourGuideHandler = TourGuide.init(MainActivity.this).with(TourGuide.Technique.Click)
                             .setPointer(new Pointer().setGravity(Gravity.START))
-                            .setToolTip(new ToolTip().setTitle("Show your...").setDescription(" id list...").setBackgroundColor(getResources().getColor(R.color.app_theme_color)))
+                            .setToolTip(new ToolTip().setTitle(getResources().getString(R.string.payment_detail)).setDescription(getResources().getString(R.string.payment_tour_guide_description)).setBackgroundColor(getResources().getColor(R.color.app_theme_color)))
                             .setOverlay(overlay)
-                            .playOn(activityMainBinding.navView.getRootView().findViewById(R.id.nav_my_id));
+                            .playOn(activityMainBinding.navView.getRootView().findViewById(R.id.nav_payment_detail));
 
                 }else {
                     super.onDrawerOpened(drawerView);
@@ -190,42 +191,84 @@ public class MainActivity extends AppCompatActivity implements Tourguide {
                 switch (item.getId()) {
 
                     case HOME_ID:
-                        mAppSharePref.saveInteger("entry_exit_fragment",2);
+                           if(new AppSharedPref(MainActivity.this).isFirstTimeLaunch()) {
+                    mTourGuideHandler.cleanUp();
+                    mTourGuideHandler = TourGuide.init(MainActivity.this).with(TourGuide.Technique.Click)
+                            .setPointer(new Pointer().setGravity(Gravity.CENTER))
+                            .setToolTip(new ToolTip().setTitle("Side Menu").setBackgroundColor(getResources().getColor(R.color.app_theme_color)))
+                            .setOverlay(overlay)
+                            .playOn(toolbar.getChildAt(0));
+
+//                    new AppSharedPref(MainActivity.this).saveBoolean(Constant.IS_FIRST_TIME_LAUNCH,false);
+                }else {
+                        mAppSharePref.saveInteger("entry_exit_fragment", 2);
                         fragment = new Home_Fragment();
-                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.home), null,MainActivity.this);
-                        for(int i=0; i<fragmentManager.getBackStackEntryCount();i++){
+                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.home), null, MainActivity.this);
+                        for (int i = 0; i < fragmentManager.getBackStackEntryCount(); i++) {
 
                             fragmentManager.popBackStackImmediate();
                         }
-                        mAppSharePref.saveInteger("bottomMenuNo",1);
+                        mAppSharePref.saveInteger("bottomMenuNo", 1);
+                }
                         break;
 
                     case OFFER_ID:
-                        if(mAppSharePref.getInteger("bottomMenuNo")>=2){
-                            mAppSharePref.saveInteger("entry_exit_fragment",2);
-                        }else
-                            mAppSharePref.saveInteger("entry_exit_fragment",1);
-                        fragment = new Offer_Fragment();
-                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.offer), null,MainActivity.this);
-                        mAppSharePref.saveInteger("bottomMenuNo",2);
+                        if (new AppSharedPref(MainActivity.this).isFirstTimeLaunch()) {
+                            mTourGuideHandler.cleanUp();
+                            mTourGuideHandler = TourGuide.init(MainActivity.this).with(TourGuide.Technique.Click)
+                                    .setPointer(new Pointer().setGravity(Gravity.CENTER))
+                                    .setToolTip(new ToolTip().setTitle(getResources().getString(R.string.tran_history)).setDescription(getResources().getString(R.string.transaction_tour_guide_description)).setBackgroundColor(getResources().getColor(R.color.app_theme_color)).setGravity(Gravity.TOP))
+                                    .setOverlay(overlay)
+                                    .playOn(activityMainBinding.bottomNavigationView.getCellById(PASSBOOK_ID));
+//                    new AppSharedPref(MainActivity.this).saveBoolean(Constant.IS_FIRST_TIME_LAUNCH,false);
+                        } else {
+                            if (mAppSharePref.getInteger("bottomMenuNo") >= 2) {
+                                mAppSharePref.saveInteger("entry_exit_fragment", 2);
+                            } else
+                                mAppSharePref.saveInteger("entry_exit_fragment", 1);
+                            fragment = new Offer_Fragment();
+                            utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.offer), null, MainActivity.this);
+                            mAppSharePref.saveInteger("bottomMenuNo", 2);
+                        }
                         break;
 
                     case PASSBOOK_ID:
 
-                        if(mAppSharePref.getInteger("bottomMenuNo")>=3){
-                            mAppSharePref.saveInteger("entry_exit_fragment",2);
-                        }else
-                            mAppSharePref.saveInteger("entry_exit_fragment",1);
-                        fragment = new Passbook_Fragment();
-                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.tran_history), null,MainActivity.this);
-                        mAppSharePref.saveInteger("bottomMenuNo",3);
+                        if (new AppSharedPref(MainActivity.this).isFirstTimeLaunch()) {
+                            mTourGuideHandler.cleanUp();
+                            mTourGuideHandler = TourGuide.init(MainActivity.this).with(TourGuide.Technique.Click)
+                                    .setPointer(new Pointer().setGravity(Gravity.CENTER))
+                                    .setToolTip(new ToolTip().setTitle(getResources().getString(R.string.my_id)).setDescription(getResources().getString(R.string.my_id_tour_guide_description)).setBackgroundColor(getResources().getColor(R.color.app_theme_color)).setGravity(Gravity.TOP))
+                                    .setOverlay(overlay)
+                                    .playOn(activityMainBinding.bottomNavigationView.getCellById(IDS_ID));
+//                    new AppSharedPref(MainActivity.this).saveBoolean(Constant.IS_FIRST_TIME_LAUNCH,false);
+                        } else {
+                            if (mAppSharePref.getInteger("bottomMenuNo") >= 3) {
+                                mAppSharePref.saveInteger("entry_exit_fragment", 2);
+                            } else
+                                mAppSharePref.saveInteger("entry_exit_fragment", 1);
+                            fragment = new Passbook_Fragment();
+                            utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.tran_history), null, MainActivity.this);
+                            mAppSharePref.saveInteger("bottomMenuNo", 3);
+                        }
                         break;
 
                     case IDS_ID:
-                        mAppSharePref.saveInteger("entry_exit_fragment",1);
+                              if(new AppSharedPref(MainActivity.this).isFirstTimeLaunch()) {
+                    mTourGuideHandler.cleanUp();
+                    mTourGuideHandler = TourGuide.init(MainActivity.this).with(TourGuide.Technique.Click)
+                            .setPointer(new Pointer().setGravity(Gravity.CENTER))
+                            .setToolTip(new ToolTip().setTitle(getResources().getString(R.string.home)).setBackgroundColor(getResources().getColor(R.color.app_theme_color)).setGravity(Gravity.TOP))
+                            .setOverlay(overlay)
+                            .playOn(activityMainBinding.bottomNavigationView.getCellById(HOME_ID));
+
+//                    new AppSharedPref(MainActivity.this).saveBoolean(Constant.IS_FIRST_TIME_LAUNCH,false);
+                }else {
+                        mAppSharePref.saveInteger("entry_exit_fragment", 1);
                         fragment = new My_Id_Fragment();
-                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.my_id), null,MainActivity.this);
-                        mAppSharePref.saveInteger("bottomMenuNo",4);
+                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, true, getResources().getString(R.string.my_id), null, MainActivity.this);
+                        mAppSharePref.saveInteger("bottomMenuNo", 4);
+                }
                         break;
 
 
@@ -304,14 +347,25 @@ public class MainActivity extends AppCompatActivity implements Tourguide {
                 switch (item.getItemId()) {
 
                     case R.id.nav_payment_detail:
-                        fragment = new Paymet_Detail_Fragment();
 
-                        Bundle bundle=new Bundle();
-                        bundle.putBoolean("sideNav",true);
-                        fragment.setArguments(bundle);
-                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, false, getResources().getString(R.string.payment_detail), null);
-                        closeDrawer();
-                        item.setCheckable(true);
+                        if (new AppSharedPref(MainActivity.this).isFirstTimeLaunch()) {
+                            mTourGuideHandler.cleanUp();
+                            mTourGuideHandler = TourGuide.init(MainActivity.this).with(TourGuide.Technique.Click)
+                                    .setPointer(new Pointer().setGravity(Gravity.START))
+                                    .setToolTip(new ToolTip().setTitle(getResources().getString(R.string.help)).setDescription(getResources().getString(R.string.help_tour_guide_description)).setBackgroundColor(getResources().getColor(R.color.app_theme_color)).setGravity(Gravity.TOP))
+                                    .setOverlay(overlay)
+                                    .playOn(activityMainBinding.navView.getRootView().findViewById(R.id.nav_help));
+//                    new AppSharedPref(MainActivity.this).saveBoolean(Constant.IS_FIRST_TIME_LAUNCH,false);
+                        } else {
+                            fragment = new Paymet_Detail_Fragment();
+
+                            Bundle bundle = new Bundle();
+                            bundle.putBoolean("sideNav", true);
+                            fragment.setArguments(bundle);
+                            utils.loadFragment(fragmentManager, fragment, R.id.main_container, false, getResources().getString(R.string.payment_detail), null);
+                            closeDrawer();
+                            item.setCheckable(true);
+                        }
                         break;
                     case R.id.nav_create_id:
                         fragment = new Website_List_Fragment();
@@ -320,24 +374,15 @@ public class MainActivity extends AppCompatActivity implements Tourguide {
                         item.setCheckable(true);
                         break;
                     case R.id.nav_my_id:
-                        if(new AppSharedPref(MainActivity.this).isFirstTimeLaunch()) {
-                    mTourGuideHandler.cleanUp();
-                   /* mTourGuideHandler = TourGuide.init(MainActivity.this).with(TourGuide.Technique.Click)
-                            .setPointer(new Pointer().setGravity(Gravity.START))
-                            .setToolTip(new ToolTip().setTitle("Create your id...").setDescription(" on website...").setBackgroundColor(getResources().getColor(R.color.app_theme_color)))
-                            .setOverlay(overlay)
-                            .playOn(activityMainBinding.navView.getRootView().findViewById(R.id.nav_my_id));*/
-                    new AppSharedPref(MainActivity.this).saveBoolean(Constant.IS_FIRST_TIME_LAUNCH,false);
-                }else {
-                            fragment = new My_Id_Fragment();
-                            Bundle bundle1 = new Bundle();
-                            bundle1.putBoolean("sideNav", true);
-                            fragment.setArguments(bundle1);
-                            utils.loadFragment(fragmentManager, fragment, R.id.main_container, false, getResources().getString(R.string.my_id), bundle1);
 
-                            closeDrawer();
-                            item.setCheckable(true);
-                        }
+                        fragment = new My_Id_Fragment();
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putBoolean("sideNav", true);
+                        fragment.setArguments(bundle1);
+                        utils.loadFragment(fragmentManager, fragment, R.id.main_container, false, getResources().getString(R.string.my_id), bundle1);
+
+                        closeDrawer();
+                        item.setCheckable(true);
                         break;
                     case R.id.nav_deposite:
                         fragment = new Deposite_Fragment();
@@ -353,8 +398,8 @@ public class MainActivity extends AppCompatActivity implements Tourguide {
                         break;
                     case R.id.nav_tran_history:
                         fragment = new Passbook_Fragment();
-                        Bundle bundle2=new Bundle();
-                        bundle2.putBoolean("sideNav",true);
+                        Bundle bundle2 = new Bundle();
+                        bundle2.putBoolean("sideNav", true);
                         fragment.setArguments(bundle2);
                         utils.loadFragment(fragmentManager, fragment, R.id.main_container, false, getResources().getString(R.string.tran_history), bundle2);
 //                        activityMainBinding.bottomNavigationView.show(3,true);
@@ -374,10 +419,22 @@ public class MainActivity extends AppCompatActivity implements Tourguide {
                         item.setCheckable(true);
                         break;
                     case R.id.nav_help:
+                         if(new AppSharedPref(MainActivity.this).isFirstTimeLaunch()) {
+                            mTourGuideHandler.cleanUp();
+                   /* mTourGuideHandler = TourGuide.init(MainActivity.this).with(TourGuide.Technique.Click)
+                            .setPointer(new Pointer().setGravity(Gravity.START))
+                            .setToolTip(new ToolTip().setTitle(getResources().getString(R.string.help)).setDescription(getResources().getString(R.string.help_tour_guide_description)).setBackgroundColor(getResources().getColor(R.color.app_theme_color)).setGravity(Gravity.TOP))
+                            .setOverlay(overlay)
+                            .playOn(activityMainBinding.navView.getRootView().findViewById(R.id.nav_help));*/
+
+                    new AppSharedPref(MainActivity.this).saveBoolean(Constant.IS_FIRST_TIME_LAUNCH,false);
+                             closeDrawer();
+                        }else {
                         fragment = new Concern_List_Fragment();
                         utils.loadFragment(fragmentManager, fragment, R.id.main_container, false, getResources().getString(R.string.raise_a_concern), null);
                         closeDrawer();
                         item.setCheckable(true);
+                }
                         break;
                     case R.id.nav_term_condition:
                         fragment = new Term_Condition_Fragment();
@@ -578,7 +635,8 @@ public class MainActivity extends AppCompatActivity implements Tourguide {
     public void lockDrawer(){
 
         activityMainBinding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-    } public void unlockDrawer(){
+    }
+    public void unlockDrawer(){
 
         activityMainBinding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 

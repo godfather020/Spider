@@ -15,6 +15,9 @@ public class Response {
     @SerializedName("msg_code")
     private Integer msgCode;
 
+    @SerializedName("otp")
+    private Integer otp;
+
     @SerializedName("websitelist")
     private List<Website_item> websitelist = null;
 
@@ -202,5 +205,13 @@ public class Response {
 
     public void setAdminpaymentmethodlist(List<Pymentmethod> adminpaymentmethodlist) {
         this.adminpaymentmethodlist = adminpaymentmethodlist;
+    }
+
+    public Integer getOtp() {
+        return otp;
+    }
+
+    public void setOtp(Integer otp) {
+        this.otp = otp;
     }
 }

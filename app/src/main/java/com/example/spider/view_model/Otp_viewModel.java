@@ -33,6 +33,7 @@ public class Otp_viewModel extends ViewModel {
     String TAG="Otp_viewModel";
 
    private  MutableLiveData<Boolean>userExist=new MutableLiveData<>();
+    private  MutableLiveData<String>otp=new MutableLiveData<>();
 
    Otp_Activity activity;
    ExtentionUtils extentionUtils =new ExtentionUtils();
@@ -64,6 +65,32 @@ public class Otp_viewModel extends ViewModel {
 
        return userExist;
     }
+    public LiveData<String> getOtp(Otp_Activity activity,String mob_no){
+
+        this.activity=activity;
+
+
+        if(mobNo_Validation(mob_no)){
+
+            Organisation_Pojo organisation_pojo=new Organisation_Pojo(Constant.FUNC_GET_OTP,
+                    new DATA(mob_no));
+            String jsonBody=new Gson().toJson(organisation_pojo,Organisation_Pojo.class);
+            Log.d(TAG,jsonBody);
+            RequestBody param=extentionUtils.toRequestBody(jsonBody);
+            getOtp(param);
+        }else {
+
+            activity.binding.progressBar.setVisibility(View.GONE);
+            ExtentionUtils extentionUtils=new ExtentionUtils();
+
+            extentionUtils.showToast(activity,"Invalid Phone No.");
+
+
+        }
+
+
+        return otp;
+    }
 
     public boolean mobNo_Validation(String mob_no){
 
@@ -85,6 +112,35 @@ public class Otp_viewModel extends ViewModel {
                     userExist.setValue(true);
                 }else {
                     userExist.setValue(false);
+                    activity.binding.progressBar.setVisibility(View.GONE);
+//                    extentionUtils.showToast(context,response.body().getMessage());
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<com.example.spider.model.Response> call, Throwable t) {
+//                Log.e("loginResponse","error=== "+t.getMessage().toString());
+                extentionUtils.showToast(activity,t.getMessage());
+                activity.binding.progressBar.setVisibility(View.GONE);
+
+            }
+        });
+    }
+    public void  getOtp(RequestBody param){
+
+        Call<Response> call =retrofitInterface.check_mobile_no(param);
+
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<com.example.spider.model.Response> call, retrofit2.Response<Response> response) {
+
+                if(response.body().getMsgCode()==1){
+
+                    otp.setValue(response.body().getOtp().toString());
+                }else {
+                    otp.setValue(null);
                     activity.binding.progressBar.setVisibility(View.GONE);
 //                    extentionUtils.showToast(context,response.body().getMessage());
                 }

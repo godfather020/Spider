@@ -202,7 +202,7 @@ public class Login_Activity extends AppCompatActivity {
     }
    public void getOtp(){
 
-       PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks = null;
+   /*    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks = null;
        final String[] code = new String[1];
        final String[] mVerifiction = new String[1];
 
@@ -234,13 +234,13 @@ public class Login_Activity extends AppCompatActivity {
                mVerifiction[0] =s;
            }
        };
-                /* PhoneAuthOptions options =
+                *//* PhoneAuthOptions options =
                          PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
                                  .setPhoneNumber("+91" + binding.edtMobNo.getText().toString())       // Phone number to verify
                                  .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
                                  .setActivity(Login_Activity.this)                 // Activity (for callback binding)
                                  .setCallbacks(mCallBacks)          // OnVerificationStateChangedCallbacks
-                                 .build();*/
+                                 .build();*//*
 
        PhoneAuthProvider.getInstance().verifyPhoneNumber(
                "+91" +  binding.edtMobNo.getText().toString() ,
@@ -271,6 +271,78 @@ public class Login_Activity extends AppCompatActivity {
 
                //signing the user
                signInWithPhoneAuthCredential(credential);
+
+               dialog.dismiss();
+           }
+       });
+
+       dialog.show();*/
+
+       final Dialog dialog = new Dialog(Login_Activity.this);
+       dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+       dialog.setCancelable(true);
+       dialog.setContentView(R.layout.dialog_otp);
+
+       EditText edtOtp =  dialog.findViewById(R.id.edt_otp);
+       TextView txt =dialog.findViewById(R.id.txt_otp);
+       edtOtp.getText().clear();
+       final String[] otp = {null};
+       viewModel.getOtp(Login_Activity.this,binding.edtMobNo.getText().toString()).observe(Login_Activity.this,get_otp -> {
+
+           binding.progressBar.setVisibility(View.GONE);
+
+           if(get_otp!=null){
+
+               otp[0] =get_otp;
+               edtOtp.setText(get_otp);
+           }
+
+       });
+
+
+       txt.setText(getResources().getString(R.string.enter_otp_title)+" "+country_code+"-"+binding.edtMobNo.getText().toString());
+       Button dialogButton =  dialog.findViewById(R.id.btn_otp_submit);
+       dialogButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               /* code[0]=edtOtp.getText().toString();
+                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerifiction[0], code[0]);
+
+                //signing the user
+                signInWithPhoneAuthCredential(credential);*/
+               if(otp[0].equals(edtOtp.getText().toString())){
+
+                   if(!forgot_password){
+                       viewModel.userOtpLogin(Login_Activity.this, binding.edtMobNo.getText().toString(), binding.edtPassword.getText().toString(),Token,device_id).observe(Login_Activity.this, userDetails -> {
+
+
+                           binding.progressBar.setVisibility(View.GONE);
+                           if (userDetails != null) {
+
+
+//                         utils.showToast(getApplicationContext(),"Login Successful \n Welcome "+userDetails.get(0).getName());
+
+                               mAppShredPref.saveUserData(userDetails.get(0));
+                               mAppShredPref.saveBoolean("login",true);
+                               Intent intent = new Intent(Login_Activity.this, MainActivity.class);
+                               startActivity(intent);
+                               finish();
+
+                           }
+
+                       });
+
+                   }else {
+
+                       Intent intent = new Intent(Login_Activity.this, Forgot_Activity.class);
+                       intent.putExtra("country_code",""+country_code);
+                       intent.putExtra("phone_no",binding.edtMobNo.getText().toString());
+                       startActivity(intent);
+//                            finish();
+                   }
+               }else {
+                   utils.showToast(getApplicationContext(),"Something went wrong");
+               }
 
                dialog.dismiss();
            }
@@ -325,7 +397,7 @@ public class Login_Activity extends AppCompatActivity {
 
 
 
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+   /* private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
 
             mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -370,7 +442,7 @@ public class Login_Activity extends AppCompatActivity {
                 }
 
             });
-    }
+    }*/
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

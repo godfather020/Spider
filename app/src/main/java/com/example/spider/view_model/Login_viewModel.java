@@ -14,6 +14,7 @@ import com.example.spider.model.DATA;
 import com.example.spider.model.Organisation_Pojo;
 import com.example.spider.model.UserDetail;
 import com.example.spider.ui.activity.Login_Activity;
+import com.example.spider.ui.activity.Otp_Activity;
 import com.example.spider.utils.Constant;
 import com.example.spider.utils.ExtentionUtils;
 import com.google.gson.Gson;
@@ -30,6 +31,7 @@ public class Login_viewModel extends ViewModel {
 
    private MutableLiveData<List<UserDetail>> userDetail;
    private  List <UserDetail> detail=new ArrayList<>();
+    private  MutableLiveData<String>otp=new MutableLiveData<>();
    Login_Activity activity;
    RetrofitInterface retrofitInterface;
     ExtentionUtils extentionUtils=new ExtentionUtils();
@@ -105,7 +107,24 @@ public class Login_viewModel extends ViewModel {
         return userDetail;
     }
 
+    public LiveData<String> getOtp(Login_Activity activity, String mob_no){
 
+        this.activity=activity;
+        initiate();
+
+
+
+            Organisation_Pojo organisation_pojo=new Organisation_Pojo(Constant.FUNC_GET_OTP,
+                    new DATA(mob_no));
+            String jsonBody=new Gson().toJson(organisation_pojo,Organisation_Pojo.class);
+            Log.d("loginResponse",jsonBody);
+            RequestBody param=extentionUtils.toRequestBody(jsonBody);
+            getOtp(param);
+
+
+
+        return otp;
+    }
 
     public boolean LoginValidation(String mob_no,String password){
 
@@ -144,6 +163,36 @@ public class Login_viewModel extends ViewModel {
 //                Log.e("loginResponse","error=== "+t.getMessage().toString());
                 activity.binding.progressBar.setVisibility(View.GONE);
                 extentionUtils.showToast(activity,t.getMessage());
+
+            }
+        });
+    }
+
+    public void  getOtp(RequestBody param){
+
+        Call<com.example.spider.model.Response> call =retrofitInterface.check_mobile_no(param);
+
+        call.enqueue(new Callback<com.example.spider.model.Response>() {
+            @Override
+            public void onResponse(Call<com.example.spider.model.Response> call, retrofit2.Response<com.example.spider.model.Response> response) {
+
+                if(response.body().getMsgCode()==1){
+
+                    otp.setValue(response.body().getOtp().toString());
+                }else {
+                    otp.setValue(null);
+                    activity.binding.progressBar.setVisibility(View.GONE);
+//                    extentionUtils.showToast(context,response.body().getMessage());
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<com.example.spider.model.Response> call, Throwable t) {
+//                Log.e("loginResponse","error=== "+t.getMessage().toString());
+                extentionUtils.showToast(activity,t.getMessage());
+                activity.binding.progressBar.setVisibility(View.GONE);
 
             }
         });
