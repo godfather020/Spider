@@ -74,7 +74,7 @@ public class Login_viewModel extends ViewModel {
        return userDetail;
     }
 
-    public LiveData<List<UserDetail>> userOtpLogin(Login_Activity activity, String mob_no, String password,String token,String deviceId){
+    public LiveData<List<UserDetail>> userOtpLogin(Login_Activity activity, String mob_no, String password,String token,String deviceId,String otp){
 
         this.activity=activity;
         activity.binding.progressBar.setVisibility(View.VISIBLE);
@@ -87,6 +87,7 @@ public class Login_viewModel extends ViewModel {
         data.setDevicetype("android");
         data.setDeviceid(deviceId);
         data.setDevicetoken(token);
+        data.setOtp(otp);
 
             Organisation_Pojo organisation_pojo=new Organisation_Pojo(Constant.FUNC_OTP_LOGIN,data);
             String jsonBody=new Gson().toJson(organisation_pojo,Organisation_Pojo.class);
@@ -114,7 +115,7 @@ public class Login_viewModel extends ViewModel {
 
 
 
-            Organisation_Pojo organisation_pojo=new Organisation_Pojo(Constant.FUNC_GET_OTP,
+            Organisation_Pojo organisation_pojo=new Organisation_Pojo(Constant.FUNC_CHECK_MOBILE_NO,
                     new DATA(mob_no));
             String jsonBody=new Gson().toJson(organisation_pojo,Organisation_Pojo.class);
             Log.d("loginResponse",jsonBody);

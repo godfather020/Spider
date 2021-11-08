@@ -2,6 +2,7 @@ package com.example.spider.ui.fragment;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -105,9 +106,29 @@ public class Concern_Fragment extends Fragment  {
 
                 if(!help_line_no.equals("N/A")){
 
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:"+help_line_no));
-                    startActivity(intent);
+//                    Intent intent = new Intent(Intent.ACTION_DIAL);
+//                    intent.setData(Uri.parse("tel:"+help_line_no));
+//                    startActivity(intent);
+                    String smsNumber = help_line_no;
+                    Uri uri = Uri.parse("smsto:" + smsNumber);
+                    Intent whatsappIntent = new Intent(Intent.ACTION_SENDTO,uri);
+//                    whatsappIntent.setType("text/plain");
+                    whatsappIntent.setPackage("com.whatsapp");
+                    whatsappIntent.putExtra(Intent.EXTRA_TEXT, "Hey Buddy! \n" +
+                            "\n" +
+                            "Type your querry here." );
+
+//                    String smsNumber = "91"+help_line_no; //Number without with country code and without '+' prifix
+//                    whatsappIntent.putExtra("jid", smsNumber + "@s.whatsapp.net");
+
+                    try {
+//                        startActivity(whatsappIntent);
+                        startActivity(Intent.createChooser(whatsappIntent, ""));
+
+                    } catch (ActivityNotFoundException e) {
+                        // Define what your app should do if no activity can handle the intent.
+                    }
+
                 }
 //                utils.copyText(activity,help_line_no);
 //                utils.showToast(activity,"Copied");

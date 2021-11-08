@@ -12,8 +12,10 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -313,7 +315,7 @@ public class Login_Activity extends AppCompatActivity {
                if(otp[0].equals(edtOtp.getText().toString())){
 
                    if(!forgot_password){
-                       viewModel.userOtpLogin(Login_Activity.this, binding.edtMobNo.getText().toString(), binding.edtPassword.getText().toString(),Token,device_id).observe(Login_Activity.this, userDetails -> {
+                       viewModel.userOtpLogin(Login_Activity.this, binding.edtMobNo.getText().toString(), binding.edtPassword.getText().toString(),Token,device_id,edtOtp.getText().toString()).observe(Login_Activity.this, userDetails -> {
 
 
                            binding.progressBar.setVisibility(View.GONE);
@@ -514,5 +516,14 @@ public class Login_Activity extends AppCompatActivity {
                 .setNegativeButton("Cancel", okListener)
                 .create()
                 .show();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return super.dispatchTouchEvent(ev);
     }
 }

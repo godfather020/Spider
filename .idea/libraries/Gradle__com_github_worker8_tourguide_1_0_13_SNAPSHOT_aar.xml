@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.worker8:tourguide:1.0.13-SNAPSHOT@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bcb010fac8b4adfefbda5a23f9075cb0/transformed/jetified-tourguide-1.0.13-SNAPSHOT/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bcb010fac8b4adfefbda5a23f9075cb0/transformed/jetified-tourguide-1.0.13-SNAPSHOT/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bcb010fac8b4adfefbda5a23f9075cb0/transformed/jetified-tourguide-1.0.13-SNAPSHOT/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4eee309878d92abafe2b5afc64c1045c/transformed/jetified-tourguide-1.0.13-SNAPSHOT/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4eee309878d92abafe2b5afc64c1045c/transformed/jetified-tourguide-1.0.13-SNAPSHOT/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4eee309878d92abafe2b5afc64c1045c/transformed/jetified-tourguide-1.0.13-SNAPSHOT/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.worker8/tourguide/1.0.13-SNAPSHOT/82247e468831dc8e18a7a97d068e1c08c39614d7/tourguide-1.0.13-SNAPSHOT-javadoc.jar!/" />

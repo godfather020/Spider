@@ -601,6 +601,7 @@ public class MainActivity extends AppCompatActivity implements Tourguide {
                if(response.body().getMsgCode()==1){
                    extentionUtils.showToast(getApplicationContext(),response.body().getMessage());
                    mAppSharePref.clearData();
+                   mAppSharePref.saveBoolean(Constant.IS_FIRST_TIME_LAUNCH,false);
                    Intent logoutIntent=new Intent(MainActivity.this, Login_Activity.class);
                    startActivity(logoutIntent);
                    finish();
